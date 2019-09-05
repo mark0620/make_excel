@@ -6,7 +6,10 @@ using namespace std;
 
 int main()
 {
-	ifstream in("fp32_batch32_resnet20_p_cifar100_5_1");
+	string str;
+	cin >> str;
+	const char* c = str.c_str();
+	ifstream in(c);
 	ofstream kernel_name("kernel_name.txt");
 	ofstream gpu_sim_cycle("gpu_sim_cycle.txt");
 	
