@@ -1,0 +1,5 @@
+*.txt
+a.out
+fp32*
+main.o
+
