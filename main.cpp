@@ -4,12 +4,19 @@
 
 using namespace std;
 
-int main()
+int main(int argc, char**argv)
 {
-	string str;
-	cin >> str;
+	if(argc!=2){
+		cout<<"argument number should be 2."<<endl;
+		return -1;
+	}
+	string str = argv[1];
 	const char* c = str.c_str();
 	ifstream in(c);
+	if(!in.good()){
+		cout<<"no file found"<<endl;
+		return -1;
+	}
 	ofstream kernel_name("kernel_name.txt");
 	ofstream gpu_sim_cycle("gpu_sim_cycle.txt");
 	
