@@ -12,45 +12,45 @@ sheet['E1'] = 'L1D_total_cache_pending_hits'
 sheet['F1'] = 'L1D_total_cache_reservation_fails'
 sheet['G1'] = 'L1D_cache_data_port_util'
 sheet['H1'] = 'L1D_cache_fill_port_util'
-sheet['J1'] = 'L2_total_cache_accesses'
-sheet['K1'] = 'L2_total_cache_misses'
-sheet['L1'] = 'L2_total_cache_pending_hits'
-sheet['M1'] = 'L2_total_cache_reservation_fails'
-
+sheet['I1'] = 'L2_total_cache_accesses'
+sheet['J1'] = 'L2_total_cache_misses'
+sheet['K1'] = 'L2_total_cache_pending_hits'
+sheet['L1'] = 'L2_total_cache_reservation_fails'
+NUM_CHANNEL=64
 cnt =1;
 while True:
 	sheet.cell(row=1, column = cnt+12).value = 'n_act'
 	cnt = cnt +1
-	if cnt == 33:
+	if cnt == NUM_CHANNEL+1:
 		cnt =1
 		break
 
 while True:
-	sheet.cell(row=1, column = cnt+12+33).value = 'n_rd'
+	sheet.cell(row=1, column = cnt+12+NUM_CHANNEL+1).value = 'n_rd'
 	cnt = cnt +1
-	if cnt == 33:
+	if cnt == NUM_CHANNEL+1:
 		cnt =1
 		break
 
 while True:
 	
-	sheet.cell(row=1, column = cnt+12+33+33).value = 'n_write'
+	sheet.cell(row=1, column = cnt+12+(NUM_CHANNEL+1)*2).value = 'n_write'
 	cnt = cnt +1
-	if cnt == 33:
+	if cnt == NUM_CHANNEL+1:
 		cnt = 1
 		break
 
 while True:
-	sheet.cell(row=1, column = cnt+12+33+33+33).value = 'n_wr_bk'
+	sheet.cell(row=1, column = cnt+12+(NUM_CHANNEL+1)*3).value = 'n_wr_bk'
 	cnt = cnt +1
-	if cnt == 33:
+	if cnt == NUM_CHANNEL+1:
 		cnt =1
 		break
 
 while True:
-	sheet.cell(row=1, column = cnt+12+33+33+33+33).value = 'bw_util'
+	sheet.cell(row=1, column = cnt+12+65+65+65+65).value = 'bw_util'
 	cnt = cnt +1
-	if cnt == 33:
+	if cnt == 65:
 		cnt = 1
 		break
 #title
@@ -70,7 +70,7 @@ cnt =2
 while True:
 	line = f.readline()
 	if not line : break;
-	sheet.cell(row = cnt,column = 2).value = line[16:]
+	sheet.cell(row = cnt,column = 2).value = int(line[16:])
 	cnt = cnt +1
 f.close()
 
@@ -79,7 +79,7 @@ cnt =2
 while True:
 	line = f.readline()
 	if not line : break;
-	sheet.cell(row = cnt,column = 3).value = line[28:]
+	sheet.cell(row = cnt,column = 3).value = int(line[28:])
 	cnt = cnt +1
 f.close()
 
@@ -88,7 +88,7 @@ cnt =2
 while True:
 	line = f.readline()
 	if not line : break;
-	sheet.cell(row = cnt,column = 4).value = line[26:]
+	sheet.cell(row = cnt,column = 4).value = int(line[26:])
 	cnt = cnt +1
 f.close()
 
@@ -97,7 +97,7 @@ cnt =2
 while True:
 	line = f.readline()
 	if not line : break;
-	sheet.cell(row = cnt,column = 5).value = line[32:]
+	sheet.cell(row = cnt,column = 5).value = int(line[32:])
 	cnt = cnt +1
 f.close()
 
@@ -106,7 +106,7 @@ cnt =2
 while True:
 	line = f.readline()
 	if not line : break;
-	sheet.cell(row = cnt,column = 6).value = line[37:]
+	sheet.cell(row = cnt,column = 6).value = int(line[37:])
 	cnt = cnt +1
 f.close()
 
@@ -115,7 +115,7 @@ cnt =2
 while True:
 	line = f.readline()
 	if not line : break;
-	sheet.cell(row = cnt,column = 7).value = line[28:]
+	sheet.cell(row = cnt,column = 7).value = float(line[28:])
 	cnt = cnt +1
 f.close()
 
@@ -124,7 +124,7 @@ cnt =2
 while True:
 	line = f.readline()
 	if not line : break;
-	sheet.cell(row = cnt,column = 8).value = line[28:]
+	sheet.cell(row = cnt,column = 8).value = float(line[28:])
 	cnt = cnt +1
 f.close()
 
@@ -133,7 +133,7 @@ cnt =2
 while True:
 	line = f.readline()
 	if not line : break;
-	sheet.cell(row = cnt,column = 9).value = line[26:]
+	sheet.cell(row = cnt,column = 9).value = int(line[26:])
 	cnt = cnt +1
 f.close()
 
@@ -142,7 +142,7 @@ cnt =2
 while True:
 	line = f.readline()
 	if not line : break;
-	sheet.cell(row = cnt,column = 10).value = line[24:]
+	sheet.cell(row = cnt,column = 10).value = int(line[24:])
 	cnt = cnt +1
 f.close()
 
@@ -151,7 +151,7 @@ cnt =2
 while True:
 	line = f.readline()
 	if not line : break;
-	sheet.cell(row = cnt,column = 11).value = line[30:]
+	sheet.cell(row = cnt,column = 11).value = int(line[30:])
 	cnt = cnt +1
 f.close()
 
@@ -160,7 +160,7 @@ cnt =2
 while True:
 	line = f.readline()
 	if not line : break;
-	sheet.cell(row = cnt,column = 12).value = line[35:]
+	sheet.cell(row = cnt,column = 12).value = int(line[35:])
 	cnt = cnt +1
 f.close()
 
@@ -172,74 +172,74 @@ while True:
 	col = 13
 
 	while True:
-		if col == 45 : break;
+		if col == 13+NUM_CHANNEL : break;
 		line = f.readline()
 		if not line : break;
-		sheet.cell(row = cnt,column = col).value = line[6:]
+		sheet.cell(row = cnt,column = col).value = int(line[6:])
 		col = col + 1
 	if not line : break;
 	cnt = cnt +1
 f.close()
 
 
-col = 13+33
+col = 13+NUM_CHANNEL+1
 f = open("n_rd.txt",'r');
 cnt =2 
 while True:
-	col = 13+33
+	col = 13+NUM_CHANNEL+1
 
 	while True:
-		if col == 45+33 : break;
+		if col == 13+NUM_CHANNEL+NUM_CHANNEL+1 : break;
 		line = f.readline()
 		if not line : break;
-		sheet.cell(row = cnt,column = col).value = line[5:]
+		sheet.cell(row = cnt,column = col).value = int(line[5:])
 		col = col + 1
 	if not line : break;
 	cnt = cnt +1
 f.close()
 
-col = 13+33*2
+col = 13+(NUM_CHANNEL+1)*2
 f = open("n_write.txt",'r');
 cnt =2 
 while True:
-	col = 13+33*2
+	col = 13+(NUM_CHANNEL+1)*2
 
 	while True:
-		if col == 45+33*2 : break;
+		if col == 13+NUM_CHANNEL+(NUM_CHANNEL+1)*2 : break;
 		line = f.readline()
 		if not line : break;
-		sheet.cell(row = cnt,column = col).value = line[8:]
+		sheet.cell(row = cnt,column = col).value = int(line[8:])
 		col = col + 1
 	if not line : break;
 	cnt = cnt +1
 f.close()
-col = 13+33*2
+col = 13+(NUM_CHANNEL+1)*2
 
 
 f = open("n_wr_bk.txt",'r');
 cnt =2 
 while True:
-	col = 13+33*3
+	col = 13+(NUM_CHANNEL+1)*3
 
 	while True:
-		if col == 45+33*3 : break;
+		if col == 13+NUM_CHANNEL+(NUM_CHANNEL+1)*3 : break;
 		line = f.readline()
 		if not line : break;
-		sheet.cell(row = cnt,column = col).value = line[8:]
+		sheet.cell(row = cnt,column = col).value = int(line[8:])
 		col = col + 1
 	if not line : break;
 	cnt = cnt +1
 f.close()
 
 
-col = 13+33*4
+col = 13+(NUM_CHANNEL+1)*4
 f = open("bw_util.txt",'r');
 cnt =2 
 while True:
-	col = 13+33*4
+	col = 13+(NUM_CHANNEL+1)*4
 
 	while True:
-		if col == 45+33*4 : break;
+		if col == 13+NUM_CHANNEL+(NUM_CHANNEL+1)*4 : break;
 		line = f.readline()
 		if not line : break;
 		sheet.cell(row = cnt,column = col).value = line[8:]
